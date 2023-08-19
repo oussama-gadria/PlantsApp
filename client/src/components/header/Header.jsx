@@ -1,6 +1,5 @@
 import Logo from "../common/Logo";
 import SearchForm from "../common/SearchForm";
-
 const Header = () => {
   return (
     <div className="shadow-xl font-sans">
