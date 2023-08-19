@@ -1,3 +1,4 @@
+import Logo from "../common/Logo";
 import SearchForm from "../common/SearchForm";
 
 const Header = () => {
@@ -7,14 +8,7 @@ const Header = () => {
         <p className=" py-2 text-white pr-20 font-bold text-sm">FREE SHIPPING ON ALL FULL SUN PLANTS! FEB . 25-2B </p>
       </div>
       <div className="container mx-auto  flex justify-between">
-        <div className="flex  flex-row items-center">
-          <p className="font-bold text-green">
-            Green
-          </p>
-          <p className=" font-black">
-            Thumb
-          </p>
-        </div>
+        <Logo />
         <ul className="flex flex-row items-center text-sm font-bold ">
           <li className="mx-11">
             <a href="/#">Home</a>
@@ -29,12 +23,9 @@ const Header = () => {
             <a href="/#">Contact us</a>
           </li>
         </ul>
-        <div className="my-2">
-          <SearchForm />
-        </div>
+        <SearchForm />
       </div>
     </div>
-
   )
 }
 export default Header;

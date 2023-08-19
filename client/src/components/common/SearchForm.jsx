@@ -2,7 +2,7 @@ import GlassSearchSvg from "../../assets/svg/GlassSearchSvg";
 
 const SearchForm=()=>{ 
     return ( 
-        <> 
+        <div className="my-2">
          <form >
                 <div className="relative">
                     <GlassSearchSvg/>
@@ -15,7 +15,7 @@ const SearchForm=()=>{
                     />
                 </div>
             </form>
-        </>
+        </div>
     )
 }
 export default SearchForm;
