@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Logo from "../common/Logo";
 import SearchForm from "../common/SearchForm";
 const Header = () => {
@@ -10,10 +11,14 @@ const Header = () => {
         <Logo />
         <ul className="flex flex-row items-center text-sm font-bold ">
           <li className="mx-11">
+            <Link to="/"> 
             <a href="/#">Home</a>
+            </Link>
           </li>
           <li className="mx-11">
-            <a href="/#">Products</a>
+            <Link to="/shop">
+             <a href="/#">Products</a> 
+            </Link>
           </li>
           <li className="mx-11">
             <a href="/#">About us</a>
