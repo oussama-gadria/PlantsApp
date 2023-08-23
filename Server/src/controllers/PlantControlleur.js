@@ -46,3 +46,5 @@ const deletePlant = async (req, res) => {
 };
 
 module.exports = { addPlant, updatePlant, getPlants, deletePlant };
+   
+
