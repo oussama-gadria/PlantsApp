@@ -7,7 +7,8 @@ const plantSchema = new Schema({
   Price: Number,
   Size: String,
   Description: String,
-  Quantity: Number
+  Quantity: Number,
+  Image:String
 });
 
 const Plant = mongoose.model("Plant", plantSchema);

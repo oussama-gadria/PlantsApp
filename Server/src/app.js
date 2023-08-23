@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const http =require("http"); 
+const cors=require("cors")
 const plantRoute=require("./routes/PlantRoute")
 const mongoose=require("mongoose");
 require("dotenv").config();
@@ -22,7 +23,8 @@ mongoose.connect(process.env.MONGO_URI,{useNewUrlParser:true})
 .then(()=>console.log("connected to db"))
 .catch((err)=>console.log(err));
 
-
+//disable cors : 
+app.use(cors());
 
 app.use(logger('dev'));
 app.use(express.json());
