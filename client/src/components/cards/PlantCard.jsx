@@ -1,3 +1,4 @@
+import BuyButton from "../buttons/BuyButton";
 
 const PlantCard = ({ plant }) => {
     return (
@@ -16,9 +17,7 @@ const PlantCard = ({ plant }) => {
                         <p className="text-black text-xs ">{plant.Price}</p>
                     </div>
                     <div className="mt-6">
-                        <button className="bg-green w-full hover:bg-green-700 text-white font-bold py-1 px-4 rounded-full">
-                            Button
-                        </button>
+                        <BuyButton/>
                     </div>
                 </div>
             </div>

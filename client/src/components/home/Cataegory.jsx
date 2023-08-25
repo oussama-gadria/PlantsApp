@@ -12,7 +12,7 @@ const Category = () => {
                     Shop By
                 </p>
                 <p className="pl-1 font-black  text-[45px]">
-                    Category
+                    Type
                 </p>
             </div>
             <div className="flex flex-row  justify-around">
@@ -20,37 +20,37 @@ const Category = () => {
                     <div className="aspect-ratio-container">
                         <img alt="Bonsai" src={bonsai} />
                     </div>
-                    <a  href="/#" className="text-sm font-bold">BONSAI</a>
+                    <a  href="/#" className="text-sm mt-6 mb-2 font-bold">BONSAI</a>
                 </div>
                 <div className="flex  flex-col basis-1/6 items-center  bg-white rounded overflow-hidden shadow-lg mx-7 mb-14">
                     <div className="aspect-ratio-container">
                         <img alt="Bonsai" src={cacti} />
                     </div>
-                    <a href="/#" className="text-sm font-bold">CACTI</a>
+                    <a href="/#" className="text-sm mt-6 mb-2 font-bold">CACTI</a>
                 </div>
                 <div className="flex flex-col basis-1/6 items-center  bg-white rounded overflow-hidden shadow-lg mx-7 mb-14">
                     <div className="aspect-ratio-container">
                         <img alt="Bonsai" src={creepers} />
                     </div>
-                    <a href="/#" className="text-sm font-bold">CREEPERS</a>
+                    <a href="/#" className="text-sm mt-6 mb-2 font-bold">CREEPERS</a>
                 </div>
                 <div className="flex flex-col basis-1/6 items-center  bg-white rounded overflow-hidden shadow-lg mx-7 mb-14">
                     <div className="aspect-ratio-container">
                         <img alt="Bonsai" src={succulents} />
                     </div>
-                    <a href="/#" className="text-sm font-bold">SUCCULENTS</a>
+                    <a href="/#" className="text-sm mt-6 mb-2 font-bold">SUCCULENTS</a>
                 </div>
                 <div className="flex flex-col basis-1/6 items-center  bg-white rounded overflow-hidden shadow-lg mx-7 mb-14">
                     <div className="aspect-ratio-container">
                         <img alt="Bonsai" src={seeds} />
                     </div>
-                    <a href="/#" className="text-sm font-bold">SEEDS</a>
+                    <a href="/#" className="text-sm  mt-6 mb-2 font-bold">SEEDS</a>
                 </div>
                 <div className="flex flex-col basis-1/6 items-center  bg-white rounded overflow-hidden shadow-lg ml-7 mb-14">
                     <div className="aspect-ratio-container">
                         <img alt="Bonsai" src={gifts} />
                     </div>
-                    <a href="/#" className="text-sm font-bold">GIFTS</a>
+                    <a href="/#" className="text-sm mt-6 mb-2 font-bold">GIFTS</a>
                 </div>
             </div>
         </div>
