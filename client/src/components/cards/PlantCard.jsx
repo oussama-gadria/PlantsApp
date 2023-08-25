@@ -1,12 +1,15 @@
 import BuyButton from "../buttons/BuyButton";
+import { Link } from "react-router-dom";
 
 const PlantCard = ({ plant }) => {
     return (
         <div>
             <div className="bg-white rounded overflow-hidden shadow-lg mx-7 mb-14 dark:bg-darkBlue dark:text-white dark:border-darkBlue">
-                <div className="">
-                    <img src={plant.Image} alt="Country Flag" />
-                </div>
+                <Link to={`/plantDetails/${plant.Name}`}>
+                    <div className="">
+                        <img src={plant.Image} alt="Country Flag" />
+                    </div>
+                </Link>
                 <div className="px-6 py-4">
                     <div className="flex items-center mb-2 pt-2">
                         <div className="text-black  font-bold text-xs mr-1">Name :</div>
@@ -17,7 +20,7 @@ const PlantCard = ({ plant }) => {
                         <p className="text-black text-xs ">{plant.Price}</p>
                     </div>
                     <div className="mt-6">
-                        <BuyButton/>
+                        <BuyButton />
                     </div>
                 </div>
             </div>
