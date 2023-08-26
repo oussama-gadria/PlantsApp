@@ -45,6 +45,17 @@ const deletePlant = async (req, res) => {
   }
 };
 
-module.exports = { addPlant, updatePlant, getPlants, deletePlant };
+const getPlantByName = async ( req,res)=> { 
+  try{ 
+    const plantName=req.params.plantName;
+    const selectedPlant=await Plant.findOne({Name:plantName});
+    res.status(200).json(selectedPlant);
+  }catch(error){ 
+    console.log(error) ;
+    res.status(500).json({message : "Server Error !"});
+  }
+}
+
+module.exports = { addPlant, updatePlant, getPlants, deletePlant,getPlantByName };
    
 
