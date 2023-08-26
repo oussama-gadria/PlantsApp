@@ -34,9 +34,9 @@ const Shop = () => {
         <BackButton goTo="/" />
         <div className="flex flex-row justify-between mt-11">
           <div>
-            <FilterByCategory />
-            <FilterByPrice />
-            <FilterByType />
+            <FilterByCategory setPlantList={setPlantList} />
+            <FilterByPrice setPlantList={setPlantList}/>
+            <FilterByType setPlantList={setPlantList} />
           </div>
           <SortBy />
         </div>

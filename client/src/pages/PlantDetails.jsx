@@ -10,7 +10,6 @@ const PlantDetails = () => {
   const [plant, setPlant] = useState({});
   useEffect(() => {
     const getPlantDetails = async () => {
-      console.log("here");
       const response = await axios.get(
         `http://localhost:5000/plant/getPlantByName/${plantName}`
       );
@@ -22,7 +21,7 @@ const PlantDetails = () => {
     <div>
       <div className="md:h-screen bg-veryLightGray  dark:bg-veryDarkBlue">
         <div className="container mx-auto pt-8 ">
-        <BackButton goTo="/shop" />
+          <BackButton goTo="/shop" />
           <div className="flex pt-8 mx-10 ">
             <div
               href="#"
@@ -51,16 +50,17 @@ const PlantDetails = () => {
                           size :
                         </p>
                         <div className="flex flex-row">
-                          <button>
-                            <div className="border border-green  w-7 text-center">
-                              S
-                            </div>
-                          </button>
-                          <button>
-                            <div className="border border-green w-7 ml-2 text-center">
-                              M
-                            </div>
-                          </button>
+                          {Array.isArray(plant.Size) ? (
+                            plant.Size.map((size) => (
+                              <button>
+                                <div className="border border-green ml-1 w-7 text-center">
+                                  {size}
+                                </div>
+                              </button>
+                            ))
+                          ) : (
+                            <p>plant Size doesn't exist !</p>
+                          )}
                         </div>
                       </div>
                       <div className="flex flex-row mt-4">

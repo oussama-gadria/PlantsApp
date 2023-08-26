@@ -36,7 +36,7 @@ const getPlants = async (req, res) => {
 
 const deletePlant = async (req, res) => {
   try {
-    const plantId = req.params.plantId; 
+    const plantId = req.params.plantId;
     const deletedPlant = await Plant.findByIdAndDelete(plantId);
     res.status(200).json(deletedPlant);
   } catch (error) {
@@ -45,17 +45,61 @@ const deletePlant = async (req, res) => {
   }
 };
 
-const getPlantByName = async ( req,res)=> { 
-  try{ 
-    const plantName=req.params.plantName;
-    const selectedPlant=await Plant.findOne({Name:plantName});
+const getPlantByName = async (req, res) => {
+  try {
+    const plantName = req.params.plantName;
+    const selectedPlant = await Plant.findOne({ Name: plantName });
     res.status(200).json(selectedPlant);
-  }catch(error){ 
-    console.log(error) ;
-    res.status(500).json({message : "Server Error !"});
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error !" });
   }
-}
+};
 
-module.exports = { addPlant, updatePlant, getPlants, deletePlant,getPlantByName };
-   
+const filterByCategory = async (req, res) => {
+  try {
+    const category = req.params.category;
+    const plantsFiltred = await Plant.find({ Category: category });
+    res.status(200).json(plantsFiltred);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error !" });
+  }
+};
 
+const filterByPrice = async (req, res) => {
+  try {
+    const minPrice = req.params.minPrice;
+    const maxPrice = req.params.maxPrice;
+    const plants = await Plant.find();
+    const filtredPlants = plants.filter((plant) => {
+      return plant.Price >= minPrice && plant.Price <= maxPrice;
+    });
+    res.status(200).json(filtredPlants);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Server Error !" });
+  }
+};
+
+const filterByType = async (req, res) => {
+  try {
+    const type = req.params.type;
+    const plantsFiltred = await Plant.find({ Type: type });    
+    res.status(200).json(plantsFiltred);
+  } catch (error) {
+    console.log(error);
+    res.status(200).json({ message: "Server Error !" });
+  } 
+};
+
+module.exports = {
+  addPlant,
+  updatePlant,
+  getPlants,
+  deletePlant,
+  getPlantByName,
+  filterByCategory,
+  filterByPrice,
+  filterByType,
+};
