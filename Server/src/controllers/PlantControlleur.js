@@ -85,12 +85,12 @@ const filterByPrice = async (req, res) => {
 const filterByType = async (req, res) => {
   try {
     const type = req.params.type;
-    const plantsFiltred = await Plant.find({ Type: type });    
+    const plantsFiltred = await Plant.find({ Type: type });
     res.status(200).json(plantsFiltred);
   } catch (error) {
     console.log(error);
     res.status(200).json({ message: "Server Error !" });
-  } 
+  }
 };
 
 module.exports = {

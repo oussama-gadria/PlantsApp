@@ -1,25 +1,16 @@
 import { useState } from "react";
 import Arrow from "../../assets/svg/Arrow";
-import axios from "axios";
 
-const FilterByCategory = ({ setPlantList }) => {
+const FilterByCategory = ({ setCategoryFilter }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [categoryType, setCategoryType] = useState();
-  const filterPlantsByCategorty = async (category) => {
+  const filterPlantsByCategory = async (category) => {
     if (category === null) {
-      await axios
-        .get("http://localhost:5000/plant/getPlants")
-        .then((response) => setPlantList(response.data))
-        .catch((err) => {
-          console.log(err);
-        });
-         setCategoryType("All Category")
+      setCategoryType("All Category");
+      setCategoryFilter(null);
     } else {
-      const filtredPlant = await axios.get(
-        `http://localhost:5000/plant/filterByCategory/${category}`
-      );
       setCategoryType(category);
-      setPlantList(filtredPlant.data);
+      setCategoryFilter(category);
     }
   };
   const toggleMenu = () => {
@@ -55,7 +46,7 @@ const FilterByCategory = ({ setPlantList }) => {
                 role="menuitem"
                 tabIndex="-1"
                 onClick={() => {
-                  filterPlantsByCategorty(null);
+                  filterPlantsByCategory(null);
                 }}
               >
                 All Categories
@@ -65,7 +56,7 @@ const FilterByCategory = ({ setPlantList }) => {
                 role="menuitem"
                 tabIndex="-1"
                 onClick={() => {
-                  filterPlantsByCategorty("Indoor Plants");
+                  filterPlantsByCategory("Indoor Plants");
                 }}
               >
                 Indoor Plants
@@ -75,7 +66,7 @@ const FilterByCategory = ({ setPlantList }) => {
                 role="menuitem"
                 tabIndex="-1"
                 onClick={() => {
-                  filterPlantsByCategorty("Outdoor plants");
+                  filterPlantsByCategory("Outdoor plants");
                 }}
               >
                 Outdoor plants
@@ -85,7 +76,7 @@ const FilterByCategory = ({ setPlantList }) => {
                 role="menuitem"
                 tabIndex="-1"
                 onClick={() => {
-                  filterPlantsByCategorty("Sun requirements");
+                  filterPlantsByCategory("Sun requirements");
                 }}
               >
                 Sun requirements
