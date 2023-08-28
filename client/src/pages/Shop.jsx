@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import PlantCard from "../components/cards/PlantCard";
 import axios from "axios";
 import FilterByCategory from "../components/filter/FilterByCategory";
@@ -9,6 +9,11 @@ import BackButton from "../components/buttons/BackButton";
 
 const Shop = () => {
   const [plantsList, setPlantList] = useState([]);
+  const [categoryFilter, setCategoryFilter] = useState();
+  const [minPriceFilter, setMinPriceFilter] = useState();
+  const [maxPriceFilter, setMaxPriceFilter] = useState();
+  const [typeFilter, setTypeFilter] = useState();
+
   const fetchPlants = async () => {
     await axios
       .get("http://localhost:5000/plant/getPlants")
@@ -17,6 +22,231 @@ const Shop = () => {
         console.log(err);
       });
   };
+
+  const filterPlants = useCallback(async () => {
+    //! !minPriceFilter && maxPriceFilter && categoryFilter && !typeFilter
+    if (!minPriceFilter && maxPriceFilter && categoryFilter && !typeFilter) {
+      const plantsFiltreByCategory = await axios.get(
+        `http://localhost:5000/plant/filterByCategory/${categoryFilter}`
+      );
+      const plantsFilterByPrice = await plantsFiltreByCategory.data.filter(
+        (plant) => {
+          return plant.Price <= maxPriceFilter;
+        }
+      );
+      setPlantList(plantsFilterByPrice);
+    }
+
+    //! minPriceFilter && !maxPriceFilter && categoryFilter && !typeFilter
+    else if (minPriceFilter && !maxPriceFilter && categoryFilter && !typeFilter) {
+      const plantsFiltreByCategory = await axios.get(
+        `http://localhost:5000/plant/filterByCategory/${categoryFilter}`
+      );
+      const plantsFilterByPrice = await plantsFiltreByCategory.data.filter(
+        (plant) => {
+          return plant.Price >= minPriceFilter;
+        }
+      );
+      setPlantList(plantsFilterByPrice);
+    }
+
+    //! !minPriceFilter && maxPriceFilter && !categoryFilter && typeFilter
+    else if (
+      !minPriceFilter &&
+      maxPriceFilter &&
+      !categoryFilter &&
+      typeFilter
+    ) {
+      const plants = await axios.get("http://localhost:5000/plant/getPlants");
+      const planstFilterByType = plants.data.filter((plant) => {
+        return plant.Type === typeFilter;
+      });
+      const plantsFilterByPrice = await planstFilterByType.filter((plant) => {
+        return plant.Price <= maxPriceFilter;
+      });
+      setPlantList(plantsFilterByPrice);
+    } 
+    //!  !minPriceFilter && !maxPriceFilter && categoryFilter &&   typeFilter  
+    else if (
+      !minPriceFilter &&
+      !maxPriceFilter &&
+      categoryFilter &&
+      typeFilter
+    ) {
+      const plantsFiltreByCategory = await axios.get(
+        `http://localhost:5000/plant/filterByCategory/${categoryFilter}`
+      );
+      const planstFilterByType = plantsFiltreByCategory.data.filter((plant) => {
+        return plant.Type === typeFilter;
+      });
+      setPlantList(planstFilterByType);
+    } 
+    //!  !minPriceFilter && maxPriceFilter &&  categoryFilter &&  typeFilter
+    else if (
+      !minPriceFilter &&
+      maxPriceFilter &&
+      categoryFilter &&
+      typeFilter
+    ) {
+      const plantsFiltreByCategory = await axios.get(
+        `http://localhost:5000/plant/filterByCategory/${categoryFilter}`
+      );
+      const planstFilterByType = plantsFiltreByCategory.data.filter((plant) => {
+        return plant.Type === typeFilter;
+      });
+      const plantsFilterByPrice = await planstFilterByType.filter((plant) => {
+        return plant.Price <= maxPriceFilter;
+      });
+      setPlantList(plantsFilterByPrice);
+    } 
+    //!   minPriceFilter && !maxPriceFilter && categoryFilter && typeFilter
+    else if (
+      minPriceFilter &&
+      !maxPriceFilter &&
+      categoryFilter &&
+      typeFilter
+    ) {
+      const plantsFiltreByCategory = await axios.get(
+        `http://localhost:5000/plant/filterByCategory/${categoryFilter}`
+      );
+      const planstFilterByType = plantsFiltreByCategory.data.filter((plant) => {
+        return plant.Type === typeFilter;
+      });
+      const plantsFilterByPrice = await planstFilterByType.filter((plant) => {
+        return plant.Price >= minPriceFilter;
+      });
+      setPlantList(plantsFilterByPrice);
+    } 
+    //!  !minPriceFilter && !maxPriceFilter &&  categoryFilter && !typeFilter
+    else if (
+      !minPriceFilter &&
+      !maxPriceFilter &&
+      categoryFilter &&
+      !typeFilter
+    ) {
+      const plantsFiltreByCategory = await axios.get(
+        `http://localhost:5000/plant/filterByCategory/${categoryFilter}`
+      );
+      setPlantList(plantsFiltreByCategory.data);
+    } 
+    //!   minPriceFilter && maxPriceFilter && !categoryFilter && typeFilter
+    else if (
+      minPriceFilter &&
+      maxPriceFilter &&
+      !categoryFilter &&
+      typeFilter
+    ) {
+      const plants = await axios.get("http://localhost:5000/plant/getPlants");
+      const planstFilterByType = plants.data.filter((plant) => {
+        return plant.Type === typeFilter;
+      });
+      const plantsFilterByPrice = await planstFilterByType.filter((plant) => {
+        return plant.Price >= minPriceFilter && plant.Price <= maxPriceFilter;
+      });
+      setPlantList(plantsFilterByPrice);
+    } 
+    //!   minPriceFilter && !maxPriceFilter && !categoryFilter && typeFilter
+    else if (
+      minPriceFilter &&
+      !maxPriceFilter &&
+      !categoryFilter &&
+      typeFilter
+    ) {
+      const plants = await axios.get("http://localhost:5000/plant/getPlants");
+      const planstFilterByType = plants.data.filter((plant) => {
+        return plant.Type === typeFilter;
+      });
+      const plantsFilterByPrice = await planstFilterByType.filter((plant) => {
+        return plant.Price >= minPriceFilter;
+      });
+      setPlantList(plantsFilterByPrice);
+    } 
+    //! minPriceFilter && maxPriceFilter && categoryFilter && typeFilter
+    else if (
+      minPriceFilter &&
+      maxPriceFilter &&
+      categoryFilter &&
+      typeFilter
+    ) {
+      const plantsFiltreByCategory = await axios.get(
+        `http://localhost:5000/plant/filterByCategory/${categoryFilter}`
+      );
+      const plantsFilterByPrice = await plantsFiltreByCategory.data.filter(
+        (plant) => {
+          return plant.Price >= minPriceFilter;
+        }
+      );
+      const planstFilterByType = await plantsFilterByPrice.filter((plant) => {
+        return plant.Type === typeFilter;
+      });
+      setPlantList(planstFilterByType);
+    } 
+    //!   !minPriceFilter &&!maxPriceFilter && !categoryFilter &&  typeFilter
+    else if (
+      !minPriceFilter &&
+      !maxPriceFilter &&
+      !categoryFilter &&
+      typeFilter
+    ) {
+      const plants = await axios.get("http://localhost:5000/plant/getPlants");
+      const planstFilterByType = plants.data.filter((plant) => {
+        return plant.Type === typeFilter;
+      });
+      setPlantList(planstFilterByType);
+    } 
+    //! minPriceFilter && maxPriceFilter && categoryFilter && !typeFilter
+    else if (minPriceFilter && maxPriceFilter && categoryFilter && !typeFilter) {
+      const plantsFiltreByCategory = await axios.get(
+        `http://localhost:5000/plant/filterByCategory/${categoryFilter}`
+      );
+      const plantsFilterByPrice = await plantsFiltreByCategory.data.filter(
+        (plant) => {
+          return plant.Price >= minPriceFilter && plant.Price <= maxPriceFilter;
+        }
+      );
+      setPlantList(plantsFilterByPrice);
+    } 
+    //! minPriceFilter && maxPriceFilter && !categoryFilter && !typeFilter
+    else if (minPriceFilter && maxPriceFilter && !categoryFilter && !typeFilter) {
+      const plants = await axios.get("http://localhost:5000/plant/getPlants");
+      const plantsFilterByPrice = await plants.data.filter((plant) => {
+        return plant.Price >= minPriceFilter && plant.Price <= maxPriceFilter;
+      });
+      setPlantList(plantsFilterByPrice);
+    } 
+    //! minPriceFilter && !maxPriceFilter && !categoryFilter && !typeFilter
+    else if (minPriceFilter && !maxPriceFilter && !categoryFilter && !typeFilter) {
+      const plants = await axios.get("http://localhost:5000/plant/getPlants");
+      const plantsFilterByPrice = await plants.data.filter((plant) => {
+        return plant.Price >= minPriceFilter;
+      });
+      setPlantList(plantsFilterByPrice);
+    } 
+    //! maxPriceFilter && !minPriceFilter && !categoryFilter && !typeFilter
+    else if (maxPriceFilter && !minPriceFilter && !categoryFilter && !typeFilter) {
+      const plants = await axios.get("http://localhost:5000/plant/getPlants");
+      const plantsFilterByPrice = await plants.data.filter((plant) => {
+        return plant.Price <= maxPriceFilter;
+      });
+      setPlantList(plantsFilterByPrice);
+    } 
+     //! !maxPriceFilter && !minPriceFilter && !categoryFilter && !typeFilter
+    else if (!maxPriceFilter && !minPriceFilter && !categoryFilter && !typeFilter) {
+      const plants = await axios.get("http://localhost:5000/plant/getPlants");
+      setPlantList(plants.data);
+    } 
+  }, [
+    minPriceFilter,
+    maxPriceFilter,
+    categoryFilter,
+    setPlantList,
+    typeFilter,
+  ]);
+
+  useEffect(() => {
+    filterPlants();
+  }, [categoryFilter, filterPlants, typeFilter]);
+
   useEffect(() => {
     fetchPlants();
   }, []);
@@ -34,9 +264,12 @@ const Shop = () => {
         <BackButton goTo="/" />
         <div className="flex flex-row justify-between mt-11">
           <div>
-            <FilterByCategory />
-            <FilterByPrice />
-            <FilterByType />
+            <FilterByCategory setCategoryFilter={setCategoryFilter} />
+            <FilterByPrice
+              setMaxPriceFilter={setMaxPriceFilter}
+              setMinPriceFilter={setMinPriceFilter}
+            />
+            <FilterByType setTypeFilter={setTypeFilter} />
           </div>
           <SortBy />
         </div>
