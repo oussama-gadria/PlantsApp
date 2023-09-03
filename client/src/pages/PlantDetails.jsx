@@ -45,8 +45,11 @@ const PlantDetails = () => {
                       <p className="mb-3 font-bold text-md text-gray-700 dark:text-gray-400 ">
                         {plant.Description}
                       </p>
+                      <p className="mb-3 font-bold text-md text-gray-700 dark:text-gray-400 ">
+                       Quantity : {plant.Quantity}
+                      </p>
                       <div className="flex flex-col">
-                        <p className="mb-3 transparent text-md text-gray-700 dark:text-gray-400 ">
+                        <p className="mb-3  font-bold  text-md text-gray-700 dark:text-gray-400 ">
                           size :
                         </p>
                         <div className="flex flex-row">
@@ -65,7 +68,7 @@ const PlantDetails = () => {
                       </div>
                       <div className="flex flex-row mt-4">
                         <AddToCart />
-                        <QuantityButton />
+                        <QuantityButton quantityMax={plant.Quantity} />
                       </div>
                     </div>
                   </div>
