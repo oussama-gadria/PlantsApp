@@ -1,5 +1,5 @@
 const express=require("express"); 
-const { addPlant, updatePlant, deletePlant, getPlants, getPlantByName, filterByCategory, filterByPrice, filterByType } = require("../controllers/PlantControlleur");
+const { addPlant, updatePlant, deletePlant, getPlants, getPlantByName, filterByCategory, filterByPrice, filterByType, filterPlant } = require("../controllers/PlantControlleur");
 const router=express.Router(); 
  
 router.post("/addPlant",addPlant); 
@@ -10,4 +10,6 @@ router.get("/getPlantByName/:plantName",getPlantByName);
 router.get("/filterByCategory/:category",filterByCategory);
 router.get("/filterByprice/:minPrice/:maxPrice",filterByPrice); 
 router.get("/filterByType/:type",filterByType);
+router.post("/filter",filterPlant);
+
 module.exports=router;

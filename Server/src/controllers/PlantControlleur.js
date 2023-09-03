@@ -93,6 +93,27 @@ const filterByType = async (req, res) => {
   }
 };
 
+const filterPlant = async (req, res) => {
+  try {
+    const filters = req.body;
+    const query = {};
+    if (filters.type) {
+      query.Type = filters.type;
+    }
+    if (filters.category) {
+      query.Category = filters.category;
+    }
+    if (filters.minPrice) {
+      query.Price = { $gt: filters.minPrice };
+    }
+    if (filters.maxPrice) {
+      query.Price = { ...query.Price, $lt: filters.maxPrice };
+    }
+    const plantsFiltered = await Plant.find(query);
+    return res.status(200).json(plantsFiltered);
+  } catch (error) {}
+};
+
 module.exports = {
   addPlant,
   updatePlant,
@@ -100,6 +121,7 @@ module.exports = {
   deletePlant,
   getPlantByName,
   filterByCategory,
+  filterPlant,
   filterByPrice,
   filterByType,
 };

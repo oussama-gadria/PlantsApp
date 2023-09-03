@@ -7,10 +7,10 @@ const BackButton = ({goTo}) => {
   };
   return (
     <>
-      <div>
+      <div className="px-7">
         <button
           type="button"
-          className=" ml-10  flex items-center mt-5  py-2 px-6 mr-2  text-sm  bg-white hover:bg-gray-100 text-gray-800 font-bold rounded-lg shadow dark:bg-darkBlue text-green dark:border-darkBlue"
+          className=" flex items-center mt-5  py-2 px-6 mr-2  text-sm  bg-white hover:bg-gray-100 text-gray-800 font-bold rounded-lg shadow dark:bg-darkBlue text-green dark:border-darkBlue"
           onClick={back}
         >
           <ArrowLeftSvg />

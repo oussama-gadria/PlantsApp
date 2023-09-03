@@ -1,9 +1,11 @@
 import { useState } from "react";
 
-const QuantityButton = () => {
+const QuantityButton = ({ quantityMax }) => {
   const [quantity, setQuantity] = useState(1);
   const addQuantity = () => {
-    setQuantity(quantity + 1);
+    if (quantity < quantityMax) {
+      setQuantity(quantity + 1);
+    }
   };
   const minusQuantity = () => {
     if (quantity > 1) setQuantity(quantity - 1);
