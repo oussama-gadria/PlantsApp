@@ -31,7 +31,9 @@ const Cart = () => {
 
   const deletePlantFromCart = async (plantId) => {
     try {
-      await axios.delete(`http://localhost:5000/cart/deletePlantFromCart/${CartId}/${plantId}`)
+      await axios.delete(
+        `http://localhost:5000/cart/deletePlantFromCart/${CartId}/${plantId}`
+      );
       getCartData();
     } catch (error) {
       console.log(error);
@@ -74,47 +76,45 @@ const Cart = () => {
                 </h2>
               </div>
               <div className="flex mt-10 mb-5">
-                <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/5">
+                <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/6">
                   Product Details
                 </h3>
-                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/6 ">
                   Quantity
                 </h3>
-                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/6 ">
                   Price
                 </h3>
-                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 ">
+                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/6 ">
                   Total
+                </h3>
+                <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/6 ">
+                  Action
                 </h3>
               </div>
               {cartList.map((item) => (
                 <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
-                  <div className="flex w-2/5">
-                    <div className="w-20">
-                      <img className="h-24" src={item.plant.Image} alt="" />
+                  <div className="flex flex-row items-center space-x-8 w-2/6">
+                    <div className="w-42">
+                      <img className="h-36 " src={item.plant.Image} alt="" />
                     </div>
-                    <div className="flex flex-col justify-between ml-4 flex-grow">
-                      <span className="font-bold text-sm">
-                        {" "}
-                        {item.plant.Name}
-                      </span>
-                      <button
-                        className="font-extrabold text-red-500 text-gray-500 text-xs"
-                        onClick={() => deletePlantFromCart(item.plant._id)}
-                      >
-                        Remove
-                      </button>
-                    </div>
+                    <span className="font-bold text-sm">{item.plant.Name}</span>
                   </div>
-                  <div className="flex justify-center w-1/5">
+                  <div className="flex justify-center w-1/6">
                     {item.quantity}
                   </div>
-                  <span className="text-center w-1/5 font-semibold text-sm">
+                  <span className="text-center w-1/6 font-semibold text-sm">
                     {item.plant.Price} $
                   </span>
-                  <span className="text-center w-1/5 font-semibold text-sm">
+                  <span className="text-center w-1/6 font-semibold text-sm">
                     {item.plant.Price * item.quantity} $
                   </span>
+                  <button
+                    className="font-extrabold text-red-500 w-1/6  text-gray-500 text-xs"
+                    onClick={() => deletePlantFromCart(item.plant._id)}
+                  >
+                    Remove
+                  </button>
                 </div>
               ))}
             </div>
@@ -175,7 +175,7 @@ const Cart = () => {
                   <span>{PriceTotal + 10}$</span>
                 </div>
                 <button
-                  className="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full rounded-lg"
+                  className="bg-green font-semibold hover:bg-indigo-600 py-3 text-lg text-white uppercase w-full rounded-lg"
                   onClick={createOrder}
                 >
                   Checkout

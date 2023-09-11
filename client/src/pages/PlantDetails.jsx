@@ -41,14 +41,14 @@ const PlantDetails = () => {
       <div className="md:h-screen bg-veryLightGray  dark:bg-veryDarkBlue">
         <div className="container mx-auto pt-8 ">
           <BackButton goTo="/shop" />
-          <div className="flex pt-8 mx-10 ">
+          <div className="flex pt-8 mx-7 ">
             <div
               href="#"
               className="bg-white rounded-lg   dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 dark:bg-veryDarkBlue"
             >
               <div className="flex flex-wrap lg:flex-nowrap bg-veryLightGray dark:bg-veryDarkBlue ">
                 <img
-                  className="w-full lg:pr-10 lg:w-[900px] lg:h-[800px]"
+                  className="w-full rounded-lg lg:pr-10 lg:w-[900px] lg:h-[545px]"
                   src={plant.Image}
                   alt="plant"
                 />

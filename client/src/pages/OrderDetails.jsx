@@ -8,7 +8,7 @@ const OrderDetails = () => {
     <div>
       <div className="bg-gray h-[184px] flex items-center justify-center">
         <div className="font-bold text-green ml-4 text-[60px]">
-          GIVE AS A FEEDBACK
+         THANK YOUR FOR YOUR ORDER
         </div>
       </div>
       <div className="flex justify-center py-24">
@@ -21,9 +21,8 @@ const OrderDetails = () => {
             />
           </a>
           <div className="p-5">
-            <p className="mb-3 font-bold text-xl text-gray-700 ">
-              Here are the biggest enterprise technology acquisitions of 2021 so
-              far, in reverse chronological order.
+            <p className="mb-3 font-bold text-center text-2xl text-gray-700 ">
+            Your order has been successfully sent. The customer will contact you soon.
             </p>
             <div className="flex flex-row justify-between mt-12">
               <button
