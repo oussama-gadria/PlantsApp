@@ -12,26 +12,6 @@ Crumpthumb is an e-commerce project built with Node.js, Express.js, React, Mongo
 - Checkout: Enables users to confirm their order and receive an email with order details.
 - Feedback: Users can provide feedback about their experience using the application.
 
-## Screenshots
-
-<!-- Add your project screenshots here -->
-![Screenshot 1](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20013%20-%20React%20App%20-%20localhost.png)
-![Screenshot 2](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20014%20-%20React%20App%20-%20localhost.png)
-![Screenshot 3](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20015%20-%20React%20App%20-%20localhost.png)
-![Screenshot 4](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20016%20-%20React%20App%20-%20localhost.png)
-![Screenshot 5](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20017%20-%20React%20App%20-%20localhost.png)
-![Screenshot 6](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20018%20-%20React%20App%20-%20localhost.png)
-![Screenshot 7](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20019%20-%20React%20App%20-%20localhost.png)
-![Screenshot 8](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20020%20-%20React%20App%20-%20localhost.png)
-![Screenshot 9](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20021%20-%20React%20App%20-%20localhost.png)
-![Screenshot 10](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20022%20-%20React%20App%20-%20localhost.png)
-![Screenshot 11](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20023%20-%20React%20App%20-%20localhost.png)
-![Screenshot 12](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20024%20-%20React%20App%20-%20localhost.png)
-![Screenshot 13](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20025%20-%20React%20App%20-%20localhost.png)
-![Screenshot 14](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20026%20-%20React%20App%20-%20localhost.png)
-![Screenshot 15](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20027%20-%20React%20App%20-%20localhost.png)
-<!-- Add more screenshots as necessary -->
-
 ## Pages
 
 1. **Signin**: This page allows users to sign in to their accounts.
@@ -76,4 +56,24 @@ Contributions are welcome! If you find any bugs or have suggestions for new feat
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License[MIT License](./LICENSE).
+
+## Screenshots
+
+<!-- Add your project screenshots here -->
+![Screenshot 1](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20013%20-%20React%20App%20-%20localhost.png)
+![Screenshot 2](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20014%20-%20React%20App%20-%20localhost.png)
+![Screenshot 3](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20015%20-%20React%20App%20-%20localhost.png)
+![Screenshot 4](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20016%20-%20React%20App%20-%20localhost.png)
+![Screenshot 5](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20017%20-%20React%20App%20-%20localhost.png)
+![Screenshot 6](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20018%20-%20React%20App%20-%20localhost.png)
+![Screenshot 7](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20019%20-%20React%20App%20-%20localhost.png)
+![Screenshot 8](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20020%20-%20React%20App%20-%20localhost.png)
+![Screenshot 9](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20021%20-%20React%20App%20-%20localhost.png)
+![Screenshot 10](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20022%20-%20React%20App%20-%20localhost.png)
+![Screenshot 11](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20023%20-%20React%20App%20-%20localhost.png)
+![Screenshot 12](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20024%20-%20React%20App%20-%20localhost.png)
+![Screenshot 13](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20025%20-%20React%20App%20-%20localhost.png)
+![Screenshot 14](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20026%20-%20React%20App%20-%20localhost.png)
+![Screenshot 15](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20027%20-%20React%20App%20-%20localhost.png)
+<!-- Add more screenshots as necessary -->
