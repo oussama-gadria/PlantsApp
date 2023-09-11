@@ -15,7 +15,7 @@ Crumpthumb is an e-commerce project built with Node.js, Express.js, React, Mongo
 ## Screenshots
 
 <!-- Add your project screenshots here -->
-![Screenshot 1](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20013%20-%20React%20App%20-%20localhost.png)
+(./client//src//assets//images//ReadmeFile/FireShot%20Capture%20013%20-%20React%20App%20-%20localhost.png)
 ![Screenshot 2](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20014%20-%20React%20App%20-%20localhost.png)
 ![Screenshot 3](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20015%20-%20React%20App%20-%20localhost.png)
 ![Screenshot 3](./client//src//assets//images//ReadmeFile/FireShot%20Capture%20016%20-%20React%20App%20-%20localhost.png)
