@@ -12,6 +12,14 @@ Crumpthumb is an e-commerce project built with Node.js, Express.js, React, Mongo
 - Checkout: Enables users to confirm their order and receive an email with order details.
 - Feedback: Users can provide feedback about their experience using the application.
 
+## Screenshots
+
+<!-- Add your project screenshots here -->
+![Screenshot 1](./images/screenshot1.png)
+![Screenshot 2](./images/screenshot2.png)
+![Screenshot 3](./images/screenshot3.png)
+<!-- Add more screenshots as necessary -->
+
 ## Pages
 
 1. **Signin**: This page allows users to sign in to their accounts.
