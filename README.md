@@ -1,4 +1,4 @@
-# Crumpthumb
+# Greenthumb
 
 Crumpthumb is an e-commerce project built with Node.js, Express.js, React, MongoDB, and Tailwind CSS. It allows users to browse, search, and purchase plants online.
 
