@@ -6,7 +6,7 @@ import seeds from "../../assets/images/category/seeds.jpg"
 import gifts from "../../assets/images/category/gift.jpg"
 const Category = () => {
     return (
-        <div className="container mx-auto">
+        <div className="container mx-auto pt-12">
             <div className="flex flex-row items-center pt-9 pb-4">
                 <p className="font-bold text-green text-[45px]">
                     Shop By

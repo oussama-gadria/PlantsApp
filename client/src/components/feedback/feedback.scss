@@ -1,0 +1,79 @@
+@import 'colors';
+
+.button-selected {
+  background-color: #50806B;
+  color: white;
+}
+
+.button-not-selected {
+  background-color: white;
+  color: hsl(216, 12%, 54%);
+}
+
+
+.feedback {
+    border-radius: 10%;
+    width: 700px;
+    height: 500px;
+    background-color:#e8edde;
+}
+
+
+
+
+
+.card-text {
+    color: #50806B;
+    font-family: 'Overpass';
+    font-size: 23px;
+    font-weight: "600";
+}
+
+.card-title {
+    color: #50806B;
+    font-family: Overpass;
+    font-size:30px;
+}
+
+.circular-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    font-family: 'League Gothic', sans-serif;
+    font-weight: 400;
+}
+.circular-button:hover { 
+    background-color:hsl(218, 11%, 71%); 
+    color: white;
+}
+
+
+.submit-button {
+    background-color: #50806B;
+    width: 290px;
+    height: 45px;
+    color: hsl(0, 0%, 100%);
+    font-family: Overpass;
+    font-size: 18px;
+    padding-top: 6px;
+   font-weight: 500;
+   border: none;
+}
+
+.submit-button:hover {
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: #3e4750;
+    color: #50806B;
+}
+.star-icon{
+    @extend .circular-button;
+    background-color: white;
+    padding-left:6px;
+  }

@@ -1,40 +1,55 @@
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import BackWard from "../assets/svg/BackWard";
 import BackButton from "../components/buttons/BackButton";
 import PlantCard from "../components/cards/PlantCard";
 import FardWard from "../assets/svg/Farward";
 import { useParams } from "react-router-dom";
-import { BestRatingPlantContext } from "../context/BestRatingContext";
+import axios from "axios";
 
-const BestRating=()=>{ 
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 8;
-    const type=useParams("categoryName");
-    const plantsList=useContext(BestRatingPlantContext)
-    useEffect(()=>{ 
-       
-    })
-    const totalPages = Math.floor(plantsList.length / itemsPerPage) ;
-    const [plantsToShow, setPlantsToShow] = useState([]);
-    const calculatePagination = () => {
-        const lastIndex = currentPage * itemsPerPage;
-        const firstIndex = lastIndex - itemsPerPage;
-        const newPlantsToShow = plantsList.slice(firstIndex, lastIndex);
-        setPlantsToShow(newPlantsToShow);
-      };
-    const goToNextPage = () => {
-        setCurrentPage(currentPage + 1);
-        calculatePagination();
-      };
-    
-      const goToPreviousPage = () => {
-        setCurrentPage(currentPage - 1);
-        calculatePagination();
-      };
+const BestRating = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [plantsList, setPlantsList] = useState([]);
+  const itemsPerPage = 8;
+  const type = useParams("categoryName");
 
-    return ( 
-        <> 
-          <div className=" bg-gray h-[184px] flex items-center">
+  const fetchBestRatePlants = useCallback(async () => {
+    await axios
+      .get(`http://localhost:5000/plant/filterByCategory/${type.categoryName}`)
+      .then((response) => {
+        setPlantsList(response.data);
+      })
+      .catch((error) => console.log(error));
+  }, [type]);
+
+  useEffect(() => {
+    fetchBestRatePlants();
+  }, [fetchBestRatePlants]);
+
+  const totalPages =Math.ceil(plantsList.length / itemsPerPage)
+  const [plantsToShow, setPlantsToShow] = useState([]);
+  const calculatePagination =useCallback(() => {
+    const lastIndex = currentPage * itemsPerPage;
+    const firstIndex = lastIndex - itemsPerPage;
+    const newPlantsToShow = plantsList.slice(firstIndex, lastIndex);
+    setPlantsToShow(newPlantsToShow);
+  },[currentPage,plantsList]);
+  const goToNextPage = () => {
+    setCurrentPage(currentPage + 1);
+    calculatePagination();
+  };
+
+  const goToPreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+    calculatePagination();
+  };
+
+  useEffect(()=>{ 
+    calculatePagination()
+  },[calculatePagination])
+
+  return (
+    <>
+      <div className=" bg-gray h-[184px] flex items-center">
         <div className="container  flex flex-row mx-auto items-center ">
           <div className="font-bold text-green ml-4 text-[60px]">Shop | </div>
           <div className="font-bold text-black ml-4 text-[16px] mt-12">
@@ -56,7 +71,7 @@ const BestRating=()=>{
               disabled={currentPage === 1}
               className="bg-gray hover:shadow-xl text-green  font-bold py-2 px-4 rounded-full "
             >
-              <BackWard/>
+              <BackWard />
             </button>
             <span className="px-6">Page {currentPage}</span>
             <button
@@ -64,12 +79,12 @@ const BestRating=()=>{
               disabled={currentPage === totalPages}
               className=" bg-gray hover:shadow-xl  text-green font-bold py-2 px-4 rounded-full"
             >
-              <FardWard/>
+              <FardWard />
             </button>
           </div>
         </div>
       </div>
-        </>
-    )
-}
+    </>
+  );
+};
 export default BestRating;

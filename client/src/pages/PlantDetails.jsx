@@ -7,7 +7,10 @@ import QuantityButton from "../components/buttons/QuantityButton";
 
 const PlantDetails = () => {
   const { plantName } = useParams();
+  const [quantity, setQuantity] = useState(1);
   const [plant, setPlant] = useState({});
+  const cartId = localStorage.getItem("cartId");
+
   useEffect(() => {
     const getPlantDetails = async () => {
       const response = await axios.get(
@@ -17,6 +20,22 @@ const PlantDetails = () => {
     };
     getPlantDetails();
   }, [plantName]);
+
+  const addToCart = async (plantId) => {
+    try {
+      await axios
+        .post("http://localhost:5000/cart/addPlantToCart", {
+          cartId,
+          plantId,
+          quantity,
+        })
+        .then((response) => {
+          console.log(response.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div>
       <div className="md:h-screen bg-veryLightGray  dark:bg-veryDarkBlue">
@@ -29,34 +48,34 @@ const PlantDetails = () => {
             >
               <div className="flex flex-wrap lg:flex-nowrap bg-veryLightGray dark:bg-veryDarkBlue ">
                 <img
-                  className="w-full lg:pr-10 lg:w-[700px] lg:h-[380px]"
+                  className="w-full lg:pr-10 lg:w-[900px] lg:h-[800px]"
                   src={plant.Image}
                   alt="plant"
                 />
                 <div className="  flex flex-col md:ml-[50px] ">
-                  <h5 className="my-8 md:pl-10 text-2xl font-bold tracking-tight text-gray-900 ">
+                  <h5 className="my-8 md:pl-10 text-5xl font-bold tracking-tight text-gray-900 ">
                     {plant.Name}
                   </h5>
                   <div className="flex flex-col md:flex-row md:pl-10 ">
                     <div>
-                      <p className="mb-3 font-bold text-md text-gray-700 dark:text-gray-400 ">
+                      <p className="mb-3 font-bold text-3xl text-gray-700 dark:text-gray-400 ">
                         ${plant.Price}
                       </p>
-                      <p className="mb-3 font-bold text-md text-gray-700 dark:text-gray-400 ">
+                      <p className="mb-3 font-bold text-xl text-gray-700 dark:text-gray-400 py-8 ">
                         {plant.Description}
                       </p>
-                      <p className="mb-3 font-bold text-md text-gray-700 dark:text-gray-400 ">
-                       Quantity : {plant.Quantity}
+                      <p className="mb-3 font-bold text-2xl text-gray-700 dark:text-gray-400 ">
+                        Quantity : {plant.Quantity}
                       </p>
                       <div className="flex flex-col">
-                        <p className="mb-3  font-bold  text-md text-gray-700 dark:text-gray-400 ">
+                        <p className="mb-3  font-bold  text-2xl text-gray-700 dark:text-gray-400 ">
                           size :
                         </p>
                         <div className="flex flex-row">
                           {Array.isArray(plant.Size) ? (
                             plant.Size.map((size) => (
                               <button>
-                                <div className="border border-green ml-1 w-7 text-center">
+                                <div className="font-bold border border-green ml-1 w-8 text-center text-xl">
                                   {size}
                                 </div>
                               </button>
@@ -66,9 +85,13 @@ const PlantDetails = () => {
                           )}
                         </div>
                       </div>
-                      <div className="flex flex-row mt-4">
-                        <AddToCart />
-                        <QuantityButton quantityMax={plant.Quantity} />
+                      <div className="flex flex-row mt-12 ">
+                        <AddToCart addToCart={addToCart} plant={plant._id} />
+                        <QuantityButton
+                          quantity={quantity}
+                          setQuantity={setQuantity}
+                          quantityMax={plant.Quantity}
+                        />
                       </div>
                     </div>
                   </div>

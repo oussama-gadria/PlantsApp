@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-
 const plantSchema = new Schema({
   Name: String,
   Price: Number,
@@ -22,8 +21,14 @@ const plantSchema = new Schema({
   NumberOfSell:{ 
     type:Number, 
     default:0
-  }
+  },
+  Orders: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Orders",
+    },
+  ],
 });
 
-const Plant = mongoose.model("Plant", plantSchema);
-module.exports = Plant;
+const Plants = mongoose.model("Plants", plantSchema);
+module.exports = Plants;
