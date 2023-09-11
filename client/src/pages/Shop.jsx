@@ -90,7 +90,7 @@ const Shop = () => {
               <PlantCard plant={plant} />
             ))}
           </div>
-          <div className="flex flex-row justify-center items-center">
+          <div className="flex flex-row justify-center items-center pb-4">
             <button
               onClick={goToPreviousPage}
               disabled={currentPage === 1}
