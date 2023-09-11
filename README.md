@@ -56,7 +56,7 @@ Contributions are welcome! If you find any bugs or have suggestions for new feat
 
 ## License
 
-This project is licensed under the MIT License[MIT License](./LICENSE).
+This project is licensed under the [MIT License](./LICENSE.txt).
 
 ## Screenshots
 
