@@ -8,7 +8,6 @@ const _ = require("lodash");
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 //creating transporter (the sender of the email verification)
-
 const transporter = nodemailer.createTransport({
   service: "Gmail",
   auth: {
@@ -20,8 +19,7 @@ const transporter = nodemailer.createTransport({
 //Signup function
 const addUser = async (req, res) => {
   try {
-    const userData = req.body;
-    const user = userData.params.input;
+    const user = req.body;
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(user.Password, saltRounds);
     const newUser = new User({
@@ -105,7 +103,7 @@ const confirmEmail = async (req, res) => {
   try {
     const decodedToken = jwt.verify(req.params.emailToken, EMAIL_SECRET);
     const id = decodedToken.user.id;
-    const userConfirmed = await User.findByIdAndUpdate(
+    await User.findByIdAndUpdate(
       id,
       {
         $set: { Confirmed: true },
@@ -156,7 +154,7 @@ const login = async (email, password, res) => {
 
 const getUserById = async (req, res) => {
   try {
-    console.log(req.body.userId)
+    console.log(req.body.userId);
     const userId = req.body.userId;
     const user = await User.findById(userId);
     res.status(200).json(user);
@@ -165,9 +163,24 @@ const getUserById = async (req, res) => {
   }
 };
 
+const sendEmail = (req, res) => {
+  try {
+    const {mailMessage,mailSubject} = req.body;
+    transporter.sendMail({
+      to: "ogadria22640653@gmail.com",
+      subject: mailSubject,
+      html: `<h1>${mailMessage}</h1> `,
+    });
+    res.status(200).json({message:"email send successfully"})
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   confirmEmail,
   getUserById,
   SignIn,
   addUser,
+  sendEmail,
 };

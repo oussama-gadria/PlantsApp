@@ -1,53 +1,48 @@
 import { useState } from "react";
 import GenderDropDowm from "../components/common/GenderDropDown";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import AlerteConfirmEmail from "../components/common/AlerteConfirmEmail";
+import { validationSignUp } from "../validation/Validation";
+import { UserApi } from "../Apis/userAPI";
 
 const SignUp = () => {
   const [firstname, setFirstname] = useState();
   const [lastname, setLastname] = useState();
   const [email, setEmail] = useState();
   const [gender, setGender] = useState();
-  const [emailSent,setEmailSent]=useState(false);
+  const [emailSent, setEmailSent] = useState(false);
   const [password, setPassword] = useState();
   const [confirmPassword, setconfirmPassword] = useState();
   const [isPasswordConfirm, setIsPasswordConfirm] = useState(false);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const validation = {
-    firstname: { required: true },
-    lastname: { required: true },
-    email: { required: true, pattern: /[a-z0-9._%]+@[a-z0-9]+\.[a-z]{2,}$/i },
-    password: {
-      required: true,
-      minLength: 8,
-      pattern:
-        /^^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*\d){1,})(?=(.*[-+_!@#$%^&*.,?]){1,}).+$/i,
-    },
-    confirmPassword: { required: true, minLength: 8 },
-  };
+
   const input = {
     FirstName: firstname,
     LastName: lastname,
     Password: password,
     Email: email,
   };
-  const saveCustomer = async () => {
-    if (confirmPassword !== password && password && confirmPassword) {
-      setIsPasswordConfirm(true);
-    } else {
-      setIsPasswordConfirm(false);
-      await axios
-        .post("http://localhost:5000/user/addUser", { params: { input } })
-        .then((response) => setEmailSent(true))
-        .catch((error) => console.log(error));
+
+  const saveCustomer = () => {
+    try {
+      if (confirmPassword !== password && password && confirmPassword) {
+        setIsPasswordConfirm(true);
+      } else {
+        setIsPasswordConfirm(false);
+        UserApi.create(input);
+        setEmailSent(true);
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
+
   return (
     <>
       <div className="flex  min-h-full flex-col justify-center  px-6 py-12 lg:px-8">
@@ -74,7 +69,7 @@ const SignUp = () => {
                 <div className="mt-2">
                   <input
                     id="firstname"
-                    {...register("firstname", validation.firstname)}
+                    {...register("firstname", validationSignUp.firstname)}
                     type="text"
                     autoComplete="firstname"
                     className=" w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -97,12 +92,12 @@ const SignUp = () => {
                 <div className="mt-2">
                   <input
                     id="lastname"
-                    {...register("lastname", validation.lastname)}
+                    {...register("lastname", validationSignUp.lastname)}
                     type="text"
                     className="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     onChange={(e) => setLastname(e.target.value)}
                   />
-                  {errors?.lastname?.type==="required" && (
+                  {errors?.lastname?.type === "required" && (
                     <div role="alert">
                       <div className="border mt-1  border-red-400 rounded bg-red-100 px-4 py-1 text-xs text-red-700">
                         <p>Last name is required !</p>
@@ -122,7 +117,7 @@ const SignUp = () => {
               <div className="mt-2">
                 <input
                   id="email"
-                  {...register("email", validation.email)}
+                  {...register("email", validationSignUp.email)}
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   onChange={(e) => setEmail(e.target.value)}
@@ -162,7 +157,7 @@ const SignUp = () => {
               <div className="mt-2">
                 <input
                   id="password"
-                  {...register("password", validation.password)}
+                  {...register("password", validationSignUp.password)}
                   type="password"
                   autoComplete="password"
                   className="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -205,7 +200,10 @@ const SignUp = () => {
               <div className="mt-2">
                 <input
                   id="confirmPassword"
-                  {...register("confirmPassword", validation.confirmPassword)}
+                  {...register(
+                    "confirmPassword",
+                    validationSignUp.confirmPassword
+                  )}
                   type="password"
                   autoComplete="Password"
                   className="block w-full rounded-md border-0 py-1.5 pl-1 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -240,7 +238,7 @@ const SignUp = () => {
                 className="flex w-full justify-center rounded-md bg-green cursor-pointer px-3 py-1.5 pl-1 text-sm font-semibold leading-6 text-white shadow-sm  "
               />
             </div>
-            {emailSent && <AlerteConfirmEmail/>}
+            {emailSent && <AlerteConfirmEmail />}
           </form>
         </div>
       </div>

@@ -2,15 +2,18 @@ import { useEffect, useState } from "react";
 import AddToCart from "../components/buttons/AddToCart";
 import axios from "axios";
 import BackButton from "../components/buttons/BackButton";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import QuantityButton from "../components/buttons/QuantityButton";
+import { CartAPI } from "../Apis/cartAPI";
 
 const PlantDetails = () => {
+
   const { plantName } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [plant, setPlant] = useState({});
   const cartId = localStorage.getItem("cartId");
-
+  const navigate=useNavigate();
+  
   useEffect(() => {
     const getPlantDetails = async () => {
       const response = await axios.get(
@@ -23,19 +26,13 @@ const PlantDetails = () => {
 
   const addToCart = async (plantId) => {
     try {
-      await axios
-        .post("http://localhost:5000/cart/addPlantToCart", {
-          cartId,
-          plantId,
-          quantity,
-        })
-        .then((response) => {
-          console.log(response.data);
-        });
+      CartAPI.addPlantToCart(cartId, plantId, quantity);
+      navigate(0)
     } catch (error) {
       console.log(error);
     }
   };
+
   return (
     <div>
       <div className="md:h-screen bg-veryLightGray  dark:bg-veryDarkBlue">
@@ -74,7 +71,7 @@ const PlantDetails = () => {
                         <div className="flex flex-row">
                           {Array.isArray(plant.Size) ? (
                             plant.Size.map((size) => (
-                              <button>
+                              <button key={plant._id}>
                                 <div className="font-bold border border-green ml-1 w-8 text-center text-xl">
                                   {size}
                                 </div>

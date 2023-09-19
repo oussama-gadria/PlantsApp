@@ -5,7 +5,7 @@ const Maps = () => {
         <p className="font-bold text-green text-[45px]">Your Plant </p>
         <p className="pl-1 font-black  text-[45px]">is Here</p>
       </div>
-      <div class="container bg-green mx-auto rounded-lg w-full h-96 mb-24">
+      <div className="container bg-green mx-auto rounded-lg w-full h-96 mb-24">
         <iframe
           title="MyPosition"
           className="p-5 w-full rounded-lg h-full"

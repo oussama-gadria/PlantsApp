@@ -13,7 +13,7 @@ function FeedBackComponent({ setFeedbackRate }) {
 
   const OnSubmit = () => {
     setFeedbackRate(number);
-    navigate("/ThankYou");  
+    navigate("/ThankYou");
   };
 
   return (

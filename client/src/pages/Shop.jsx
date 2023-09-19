@@ -1,6 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
 import PlantCard from "../components/cards/PlantCard";
-import axios from "axios";
 import FilterByCategory from "../components/filter/FilterByCategory";
 import FilterByPrice from "../components/filter/FilterByPrice";
 import FilterByType from "../components/filter/FilterByType";
@@ -8,8 +7,10 @@ import BackButton from "../components/buttons/BackButton";
 import FardWard from "../assets/svg/Farward";
 import BackWard from "../assets/svg/BackWard";
 import SearchForm from "../components/common/SearchForm";
+import { PlantApi } from "../Apis/plantAPI";
 
 const Shop = () => {
+  
   const [plantsList, setPlantList] = useState([]);
   const [plantsToShow, setPlantsToShow] = useState([]);
   const [plants, setPlants] = useState([]);
@@ -20,6 +21,7 @@ const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [typeFilter, setTypeFilter] = useState(null);
   const itemsPerPage = 8;
+
   const calculatePagination = useCallback(() => {
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;
@@ -39,11 +41,11 @@ const Shop = () => {
   };
 
   const fetchPlants = useCallback(async () => {
-    const response = await axios.post("http://localhost:5000/plant/filter", {
-      type: typeFilter ? typeFilter : null,
-      maxPrice: maxPriceFilter ? maxPriceFilter : null,
-      minPrice: minPriceFilter ? minPriceFilter : null,
-      category: categoryFilter ? categoryFilter : null,
+    const response = await PlantApi.filter({
+      type: typeFilter || null,
+      maxPrice: maxPriceFilter || null,
+      minPrice: minPriceFilter || null,
+      category: categoryFilter || null,
     });
     setPlantList(response.data);
     setTotalPages(Math.ceil(response.data.length / itemsPerPage));
@@ -87,7 +89,7 @@ const Shop = () => {
         <div>
           <div className="grid grid-cols-4 mt-11">
             {plants.map((plant) => (
-              <PlantCard plant={plant} />
+              <PlantCard key={plant._id} plant={plant} />
             ))}
           </div>
           <div className="flex flex-row justify-center items-center pb-4">

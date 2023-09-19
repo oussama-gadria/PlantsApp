@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import { validation } from "../validation/Validation";
+import { CartAPI } from "../Apis/cartAPI";
+import { UserApi } from "../Apis/userAPI";
 
 const SignIn = ({ handleChangeToken }) => {
   const {
@@ -10,34 +11,25 @@ const SignIn = ({ handleChangeToken }) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
   const navigate = useNavigate();
   const [signInFailed, setSignInFailed] = useState(false);
   const [signInErrMessage, setSignInErrMessage] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-  const validation = {
-    email: { required: true },
-    password: { required: true },
-  };
 
-  const signInCustomer = async () => {
-
-    await axios
-      .post("http://localhost:5000/user/SignIn", { email, password })
-      .then(async(response) => {
-        const cart =await axios.post("http://localhost:5000/cart/addCart"); 
-        localStorage.setItem("cartId",cart.data.data.newCart._id);  
+  const signInCustomer = () => {
+    UserApi.signIn(email, password)
+      .then(async (response) => {
+        CartAPI.create().then((cart) => {
+          localStorage.setItem("cartId", cart.data.data.newCart._id);
+        });
         handleChangeToken(response.data.token);
         navigate("/");
       })
       .catch((err) => {
-        if (err.response.data === "Incorrect password!") {
-          setSignInErrMessage(err.response.data);
-          setSignInFailed(true);
-        } else {
-          setSignInErrMessage(err.response.data);
-          setSignInFailed(true);
-        }
+        setSignInFailed(true);
+        setSignInErrMessage(err.response.data);
       });
   };
 

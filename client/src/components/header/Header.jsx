@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from "../common/Logo";
 import BagSvg from "../../assets/svg/BagSvg";
 import jwt_decode from "jwt-decode";
@@ -6,12 +6,13 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import SignInSvg from "../../assets/svg/SignInSvg";
 import { TokenContext } from "../../context/Token";
 import axios from "axios";
-import LogOutSvg from "../../assets/svg/LogOutSvg";
+import AvatarSvg from "../../assets/svg/AvatarSvg";
+import DropDownProfile from "../common/DropDownProfile";
 const Header = () => {
   const [userIsConnect, setUserIsConnect] = useState(false);
   const [userConnect, setUserConnect] = useState();
   const token = useContext(TokenContext) || localStorage.getItem("token");
-  const navigate = useNavigate();
+
   const fetchUserData = useCallback(async (userId) => {
     if (userId) {
       const user = await axios.post("http://localhost:5000/user/getUser", {
@@ -21,6 +22,7 @@ const Header = () => {
       setUserIsConnect(true);
     }
   }, []);
+
   useEffect(() => {
     if (token) {
       const userConnect = jwt_decode(token);
@@ -30,11 +32,6 @@ const Header = () => {
     }
   }, [token, fetchUserData]);
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("cartId");
-    navigate("/SignIn");
-  };
   return (
     <div className="shadow-xl font-sans ">
       <div className="flex justify-center bg-green">
@@ -80,12 +77,15 @@ const Header = () => {
           )}
           {userIsConnect && (
             <div className="flex flex-row items-center">
-              <p className="text-sm font-bold pr-3">
+              <p className="text-sm font-bold pr-2">
                 Welcome {userConnect.FirstName} !
               </p>
-              <button onClick={logout}>
-                <LogOutSvg />
-              </button>
+              <div className="dropdown inline-block relative">
+                <button className="bg-gray-300 text-gray-700 font-semibold py-2 px-2 rounded inline-flex items-center">
+                  <AvatarSvg />
+                </button>
+                <DropDownProfile />
+              </div>
             </div>
           )}
         </div>
