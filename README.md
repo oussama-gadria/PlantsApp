@@ -1,6 +1,6 @@
-# Crumpthumb
+# Greenthumb
 
-Crumpthumb is an e-commerce project built with Node.js, Express.js, React, MongoDB, and Tailwind CSS. It allows users to browse, search, and purchase plants online.
+Greenthumb is an e-commerce project built with Node.js, Express.js, React, MongoDB, and Tailwind CSS. It allows users to browse, search, and purchase plants online.
 
 ## Features
 
@@ -25,7 +25,7 @@ Crumpthumb is an e-commerce project built with Node.js, Express.js, React, Mongo
 
 ## Setup Instructions
 
-To set up the Crumpthumb project locally, follow these steps:
+To set up the Greenthumb project locally, follow these steps:
 
 # Setup Instructions
 
@@ -46,9 +46,9 @@ To set up the Crumpthumb project locally, follow these steps:
 5. Start the client:
    npm start
 
-6. Open your web browser and visit http://localhost:3000 to access the Crumpthumb application.
+6. Open your web browser and visit http://localhost:3000 to access the Greenthumb application.
 
-That's it! You should now have the Crumpthumb project up and running on your local machine.
+That's it! You should now have the Greenthumb project up and running on your local machine.
 
 ## Contributing
 
@@ -56,7 +56,7 @@ Contributions are welcome! If you find any bugs or have suggestions for new feat
 
 ## License
 
-This project is licensed under the [MIT License](./LICENSE.txt).
+This project is licensed under the [MIT License](./LICENSE).
 
 ## Screenshots
 
