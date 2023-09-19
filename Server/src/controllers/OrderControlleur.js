@@ -71,9 +71,9 @@ const addOrder = async (req, res) => {
       </html>
     `,
     });
-    res.status(200).json({ order });
+    res.status(200).json({message:"order added succefully"});
   } catch (error) {
-    res.status(500).json({ message: "Error on the Server !" });
+    res.status(500).json({ message: "Error on the Server !"});
   }
 };
 

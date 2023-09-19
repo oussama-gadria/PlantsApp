@@ -40,9 +40,7 @@ const addUser = async (req, res) => {
     } catch (error) {
       return res.json(error.message);
     }
-
     const url = `http://localhost:5000/user/SignUp/${emailToken}`;
-
     transporter.sendMail({
       to: newUser.Email,
       subject: "Confirm Email",
@@ -77,7 +75,6 @@ const addUser = async (req, res) => {
         </html>
       `,
     });
-
     newUser
       .save()
       .then((result) => {
@@ -165,13 +162,13 @@ const getUserById = async (req, res) => {
 
 const sendEmail = (req, res) => {
   try {
-    const {mailMessage,mailSubject} = req.body;
+    const { mailMessage, mailSubject } = req.body;
     transporter.sendMail({
       to: "ogadria22640653@gmail.com",
       subject: mailSubject,
       html: `<h1>${mailMessage}</h1> `,
     });
-    res.status(200).json({message:"email send successfully"})
+    res.status(200).json({ message: "email send successfully" });
   } catch (error) {
     console.log(error);
   }

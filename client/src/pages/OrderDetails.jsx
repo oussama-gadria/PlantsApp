@@ -17,7 +17,7 @@ const OrderDetails = () => {
             <img
               className="rounded-t-lg"
               src="https://i.etsystatic.com/26508026/r/il/239fc1/3285973706/il_fullxfull.3285973706_59cx.jpg"
-              alt=""
+              alt="..."
             />
           </a>
           <div className="p-5">
