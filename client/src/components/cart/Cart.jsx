@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
 const Cart = () => {
+  
   const cartId = localStorage.getItem("cartId");
   const navigate = useNavigate();
   const [cartList, setCartList] = useState([]);
@@ -15,17 +16,12 @@ const Cart = () => {
   const createOrder = async () => {
     const userConnect = jwt_decode(token);
     const userId = userConnect.id;
-
-    await axios
-      .post("http://localhost:5000/order/addOrder", {
-        userId,
-        CartId,
-        PriceTotal,
-        shippingAdresse,
-      })
-      .then((response) => {
-        console.log(response.data);
-      });
+    await axios.post("http://localhost:5000/order/addOrder", {
+      userId,
+      CartId,
+      PriceTotal,
+      shippingAdresse,
+    });
     navigate("/OrderDetails");
   };
 
@@ -35,6 +31,7 @@ const Cart = () => {
         `http://localhost:5000/cart/deletePlantFromCart/${CartId}/${plantId}`
       );
       getCartData();
+      navigate(0);
     } catch (error) {
       console.log(error);
     }
@@ -53,8 +50,8 @@ const Cart = () => {
 
   useEffect(() => {
     let total = 0;
-    for (let i = 0; i < cartList.length; i++) {
-      total = total + cartList[i].quantity * cartList[i].plant.Price;
+    for (const element of cartList) {
+      total = total + element.quantity * element.plant.Price;
     }
     setTotalPrice(total);
   }, [cartList]);
@@ -93,7 +90,7 @@ const Cart = () => {
                 </h3>
               </div>
               {cartList.map((item) => (
-                <div className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
+                <div key={item.plant._id} className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                   <div className="flex flex-row items-center space-x-8 w-2/6">
                     <div className="w-42">
                       <img className="h-36 " src={item.plant.Image} alt="" />

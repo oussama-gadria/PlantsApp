@@ -34,8 +34,10 @@ const addOrder = async (req, res) => {
       PriceTotal,
       ShippingAdresse,
     };
-    console.log(newOrder.user);
+
     const order = await Orders.create(newOrder);
+    user.Orders.push(order);
+    await user.save();
     transporter.sendMail({
       to: "oussamagadria1@gmail.com",
       subject: "New order",
@@ -69,13 +71,24 @@ const addOrder = async (req, res) => {
       </html>
     `,
     });
-    res.status(200).json({ order });
+    res.status(200).json({message:"order added succefully"});
   } catch (error) {
+    res.status(500).json({ message: "Error on the Server !"});
+  }
+};
+
+const getOrderByUserId = async (req, res) => {
+  try {
+    const {userId} = req.body;
+    const user = await User.findById(userId);
+    res.status(200).json(user.Orders);
+  } catch (err) {
     res.status(500).json({ message: "Error on the Server !" });
   }
 };
 
 module.exports = {
   addOrder,
+  getOrderByUserId,
   getOrder,
 };

@@ -17,7 +17,14 @@ const AboutUs = () => {
         <div className="bg-gray flex rounded-r-lg flex-col items-center justify-center ">
           <p className="font-bold text-4xl pb-6 text-green">OUR STORY</p>
           <p className="font-semibold text-center px-4">
-          Once upon a time in Bloomsville, there was a mischievous plant named Sprout. During the grand opening of Mr. Greenleaf's plant store, Sprout caused chaos by splashing water on unsuspecting visitors and playing pranks. Despite the mayhem, everyone laughed and had a memorable time. Sprout's playful nature became legendary in Bloomsville, attracting visitors from far and wide. If you visit the store, keep an eye out for Sprout's mischief and prepare for a fun-filled experience!
+            Once upon a time in Bloomsville, there was a mischievous plant named
+            Sprout. During the grand opening of Mr. Greenleaf's plant store,
+            Sprout caused chaos by splashing water on unsuspecting visitors and
+            playing pranks. Despite the mayhem, everyone laughed and had a
+            memorable time. Sprout's playful nature became legendary in
+            Bloomsville, attracting visitors from far and wide. If you visit the
+            store, keep an eye out for Sprout's mischief and prepare for a
+            fun-filled experience!
           </p>
         </div>
       </div>

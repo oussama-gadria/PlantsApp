@@ -1,6 +1,6 @@
 import FeedBackComponent from "../components/feedback/FeedBackComponent";
 
-const FeedBack = ({setFeedbackRate,feedbackRate}) => {
+const FeedBack = ({ setFeedbackRate, feedbackRate }) => {
   return (
     <>
       <div className="bg-gray h-[184px] flex items-center justify-center">
@@ -8,7 +8,10 @@ const FeedBack = ({setFeedbackRate,feedbackRate}) => {
           GIVE AS A FEEDBACK
         </div>
       </div>
-      <FeedBackComponent setFeedbackRate={setFeedbackRate} feedbackRate={feedbackRate}/>
+      <FeedBackComponent
+        setFeedbackRate={setFeedbackRate}
+        feedbackRate={feedbackRate}
+      />
     </>
   );
 };

@@ -5,34 +5,33 @@ import PlantCard from "../components/cards/PlantCard";
 import FardWard from "../assets/svg/Farward";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+const itemsPerPage = 8;
 
 const BestRating = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [plantsList, setPlantsList] = useState([]);
-  const itemsPerPage = 8;
+  const [plantsToShow, setPlantsToShow] = useState([]);
+  const totalPages = Math.ceil(plantsList.length / itemsPerPage);
   const type = useParams("categoryName");
 
   const fetchBestRatePlants = useCallback(async () => {
-    await axios
-      .get(`http://localhost:5000/plant/filterByCategory/${type.categoryName}`)
-      .then((response) => {
-        setPlantsList(response.data);
-      })
-      .catch((error) => console.log(error));
+    try {
+      const response = await axios.get(
+        `http://localhost:5000/plant/filterByCategory/${type.categoryName}`
+      );
+      setPlantsList(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }, [type]);
 
-  useEffect(() => {
-    fetchBestRatePlants();
-  }, [fetchBestRatePlants]);
-
-  const totalPages =Math.ceil(plantsList.length / itemsPerPage)
-  const [plantsToShow, setPlantsToShow] = useState([]);
-  const calculatePagination =useCallback(() => {
+  const calculatePagination = useCallback(() => {
     const lastIndex = currentPage * itemsPerPage;
     const firstIndex = lastIndex - itemsPerPage;
     const newPlantsToShow = plantsList.slice(firstIndex, lastIndex);
     setPlantsToShow(newPlantsToShow);
-  },[currentPage,plantsList]);
+  }, [currentPage, plantsList]);
+
   const goToNextPage = () => {
     setCurrentPage(currentPage + 1);
     calculatePagination();
@@ -43,9 +42,13 @@ const BestRating = () => {
     calculatePagination();
   };
 
-  useEffect(()=>{ 
-    calculatePagination()
-  },[calculatePagination])
+  useEffect(() => {
+    fetchBestRatePlants();
+  }, [fetchBestRatePlants]);
+
+  useEffect(() => {
+    calculatePagination();
+  }, [calculatePagination]);
 
   return (
     <>
@@ -61,8 +64,8 @@ const BestRating = () => {
         <BackButton goTo="/" />
         <div>
           <div className="grid grid-cols-4 mt-11">
-            {plantsToShow.map((plant) => (
-              <PlantCard plant={plant} />
+            {plantsToShow.map((plant,index) => (
+              <PlantCard key={plant._id} plant={plant} />
             ))}
           </div>
           <div className="flex flex-row justify-center items-center">

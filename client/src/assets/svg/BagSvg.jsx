@@ -8,13 +8,15 @@ const BagSvg = () => {
   const cartId = localStorage.getItem("cartId");
 
   const getCartData = useCallback(async () => {
-    await axios
-      .get(`http://localhost:5000/cart/getCartInfo/${cartId}`)
-      .then((response) => {
-        setNumberPlantInCart(response.data.length);
-      });
+    if (cartId) {
+      await axios
+        .get(`http://localhost:5000/cart/getCartInfo/${cartId}`)
+        .then((response) => {
+          setNumberPlantInCart(response.data.length);
+        });
+    }
   }, [cartId]);
-  
+
   useEffect(() => {
     getCartData();
   }, [getCartData]);

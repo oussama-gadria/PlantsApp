@@ -24,7 +24,7 @@ const plantSchema = new Schema({
   },
   Orders: [
     {
-      type: Schema.Types.ObjectId,
+      type: Schema.Types.Object,
       ref: "Orders",
     },
   ],

@@ -1,80 +1,110 @@
-import { Route, Routes } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import routes from "./routes/Route";
 import "./App.css";
 import Header from "./components/header/Header";
-import Home from "./pages/Home";
-import Shop from "./pages/Shop";
-import PlantDetails from "./pages/PlantDetails";
 import Footer from "./components/footer/Footer";
-import BestRating from "./pages/BestRate";
 import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import { useReducer, useState } from "react";
-import AboutUs from "./pages/AboutUs";
-import ContactUs from "./pages/ContactUs";
-import CartPage from "./pages/CartPage";
-import OrderDetails from "./pages/OrderDetails";
 import FeedBack from "./pages/Feedback";
 import ThankYouFeedback from "./pages/ThankYouFeedback";
+import PlantDetails from "./pages/PlantDetails";
 
 function App() {
   const initialToken = "";
-  const [feedbackRate, setFeedbackRate] = useState(null);
+  const [feedbackRate, setFeedbackRate] = React.useState(null);
+
   const tokenReducer = (token, action) => {
     if (action.type === "createToken") {
       localStorage.setItem("token", action.token);
       return localStorage.getItem("token");
     }
+    return token;
   };
-  const [token, dispatch] = useReducer(tokenReducer, initialToken);
+
+  const plantsInCartReducer = (plantsInCart, action) => {
+    if (action.type === "addPlantToCart") {
+      return [...plantsInCart, action.plantId];
+    }
+    return plantsInCart;
+  };
+
+  const [token, tokenDispatch] = React.useReducer(tokenReducer, initialToken);
+  const [plantsInCart, plantsInCartDispatch] = React.useReducer(
+    plantsInCartReducer,
+    0
+  );
+
   const handleChangeToken = (token) => {
-    dispatch({
+    tokenDispatch({
       type: "createToken",
       token: token,
     });
   };
+
+  const addPlantInCart = (plantId) => {
+    plantsInCartDispatch({
+      type: "addPlantToCart",
+      plantId: plantId,
+    });
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
-      <Header />
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/shop" element={<Shop />}></Route>
-        <Route
-          path="/plantDetails/:plantName"
-          element={<PlantDetails />}
-        ></Route>
-        <Route
-          path="/bestRatedPlant/:categoryName"
-          element={<BestRating />}
-        ></Route>
         <Route
           path="/SignIn"
-          element={<SignIn handleChangeToken={handleChangeToken} />}
+          element={
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <SignIn handleChangeToken={handleChangeToken} />
+              <Footer />
+            </div>
+          }
         ></Route>
-        <Route path="/SignUp" element={<SignUp />}></Route>
-        <Route path="/AboutUs" element={<AboutUs />}></Route>
-        <Route path="/ContactUs" element={<ContactUs />}></Route>
-        <Route path="/cart/:cartId" element={<CartPage />}></Route>
-        <Route path="/OrderDetails" element={<OrderDetails />}></Route>
         <Route
           path="/Feedback"
           element={
-            <FeedBack
-              setFeedbackRate={setFeedbackRate}
-              feedbackRate={feedbackRate}
-            />
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <FeedBack
+                setFeedbackRate={setFeedbackRate}
+                feedbackRate={feedbackRate}
+              />
+              <Footer />
+            </div>
           }
         ></Route>
         <Route
           path="/ThankYou"
           element={
-            <ThankYouFeedback
-              setFeedbackRate={setFeedbackRate}
-              feedbackRate={feedbackRate}
-            />
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <ThankYouFeedback
+                setFeedbackRate={setFeedbackRate}
+                feedbackRate={feedbackRate}
+              />
+              <Footer />
+            </div>
           }
         ></Route>
+        <Route
+          path="/plantDetails/:plantName"
+          element={
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <PlantDetails addPlantInCart={addPlantInCart} />
+              <Footer />
+            </div>
+          }
+        ></Route>
+        {routes.map((route, index) => (
+          <Route
+            key={index}
+            path={route.path}
+            element={React.cloneElement(route.element)}
+          />
+        ))}
       </Routes>
-      <Footer />
     </div>
   );
 }
