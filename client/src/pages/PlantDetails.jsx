@@ -11,6 +11,7 @@ const PlantDetails = () => {
   const { plantName } = useParams();
   const [quantity, setQuantity] = useState(1);
   const [plant, setPlant] = useState({});
+  const [size, setSize] = useState();  
   const cartId = localStorage.getItem("cartId");
   const navigate=useNavigate();
   
@@ -26,7 +27,7 @@ const PlantDetails = () => {
 
   const addToCart = async (plantId) => {
     try {
-      CartAPI.addPlantToCart(cartId, plantId, quantity);
+      CartAPI.addPlantToCart(cartId, plantId, quantity,size);
       navigate(0)
     } catch (error) {
       console.log(error);
@@ -46,7 +47,7 @@ const PlantDetails = () => {
               <div className="flex flex-wrap lg:flex-nowrap bg-veryLightGray dark:bg-veryDarkBlue ">
                 <img
                   className="w-full rounded-lg lg:pr-10 lg:w-[900px] lg:h-[545px]"
-                  src={plant.Image}
+                  src={`http://localhost:5000/uploads/${plant.Image}`}
                   alt="plant"
                 />
                 <div className="  flex flex-col md:ml-[50px] ">
@@ -70,10 +71,10 @@ const PlantDetails = () => {
                         </p>
                         <div className="flex flex-row">
                           {Array.isArray(plant.Size) ? (
-                            plant.Size.map((size) => (
-                              <button key={plant._id}>
-                                <div className="font-bold border border-green ml-1 w-8 text-center text-xl">
-                                  {size}
+                            plant.Size.map((s) => (
+                              <button key={plant._id} onClick={()=>setSize(s)}>
+                                <div className={`font-bold border ml-1 w-8 text-center text-xl ${ size ? 'bg-green text-white' : 'bg-white text-green'}`}>
+                                  {s}
                                 </div>
                               </button>
                             ))

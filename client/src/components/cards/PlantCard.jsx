@@ -6,9 +6,9 @@ const PlantCard = ({ plant }) => {
         <div>
             <div className="bg-white rounded overflow-hidden shadow-lg mx-7 mb-14 dark:bg-darkBlue dark:text-white dark:border-darkBlue">
                 <Link to={`/plantDetails/${plant.Name}`}>
-                    <div className="">
-                        <img src={plant.Image} alt="Country Flag" />
-                    </div>
+                    <div className="">  
+                        <img src={`http://localhost:5000/uploads/${plant.Image}`} alt="Country Flag" />
+                    </div>  
                 </Link>
                 <div className="px-6 py-4">
                     <div className="flex items-center mb-2 pt-2">

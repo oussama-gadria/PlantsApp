@@ -1,21 +1,25 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+
 const plantSchema = new Schema({
   Name: String,
   Price: Number,
   Size: [String],
   Description: String,
   Quantity: Number,
-  Image:String,
+  Image:{
+        type:String, 
+        default:"https://crawfordroofing.com.au/wp-content/uploads/2018/04/No-image-available-2.jpg"
+        },
   Category:{ 
     type:String, 
     enum:['Indoor Plants',"Outdoor plants","Sun requirements"], 
-    default:""
+    default:"Indoor Plants"
   }, 
   Type:{ 
     type:String, 
     enum:["Bonsai","Cacti","Creepers","Succulents","Seeds","Gifts"], 
-    default:""
+    default:"Bonsai"
   }, 
   rate:Number,
   NumberOfSell:{ 

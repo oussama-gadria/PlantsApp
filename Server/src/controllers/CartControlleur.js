@@ -24,11 +24,11 @@ const deleteCart = async (req, res) => {
 
 const addPlantToCart = async (req, res) => {
   try {
-    const { cartId, plantId, quantity } = req.body;
+    const { cartId, plantId, quantity, size } = req.body;
     const cart = await Cart.findById(cartId);
     const plant = await Plant.findById(plantId);
     let exist = false;
-    const plantToBuy = { plant, quantity };
+    const plantToBuy = { plant, quantity, size };
     for (const element of cart.plants) {
       if (element.plant._id.toString() === plantId) {
         exist = true;

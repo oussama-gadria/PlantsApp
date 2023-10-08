@@ -3,9 +3,13 @@ const Plant = require("../models/Plants");
 const addPlant = async (req, res) => {
   try {
     const plant = req.body;
+    if (req.file) {
+      plant.Image = req.file.originalname;
+    }
     const newPlant = await Plant.create(plant);
     res.status(201).json(newPlant);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ message: "Server Error!" });
   }
 };
