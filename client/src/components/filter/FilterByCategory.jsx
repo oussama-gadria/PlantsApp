@@ -19,7 +19,7 @@ const FilterByCategory = ({ setCategoryFilter }) => {
   return (
     <>
       <div className="relative inline-block text-left">
-        <div className="mx-7 pt-8 md:pt-0">
+        <div className="px-7 pt-8 md:pt-0">
           <button
             type="button"
             className="inline-flex w-48   justify-between  rounded-md bg-white text-green px-3 py-3 text-xs font-extrabold text-gray-900 shadow-2xl  ring-gray-300 hover:bg-gray-50 dark:border-darkBlue dark:placeholder-gray-400  dark:bg-darkBlue"

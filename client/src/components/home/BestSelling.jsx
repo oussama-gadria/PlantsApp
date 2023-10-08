@@ -9,7 +9,7 @@ const BestSelling = () => {
                         Best
                     </p>
                     <p className="pl-1 font-black  text-[45px]">
-                        Selling
+                        Rate
                     </p>
                 </div>
                 <BestSellingCard/>
