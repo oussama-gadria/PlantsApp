@@ -15,9 +15,7 @@ const Header = () => {
 
   const fetchUserData = useCallback(async (userId) => {
     if (userId) {
-      const user = await axios.post("http://localhost:5000/user/getUser", {
-        userId,
-      });
+      const user = await axios.get(`http://localhost:5000/user/getUser/${userId}`);
       setUserConnect(user.data);
       setUserIsConnect(true);
     }

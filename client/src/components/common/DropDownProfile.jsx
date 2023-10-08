@@ -12,7 +12,6 @@ const DropDownProfile = () => {
   };
 
   const getOrders=()=>{ 
-    console.log("hello")
     navigate("/orders")
   }
 
