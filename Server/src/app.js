@@ -10,7 +10,6 @@ const orderRoute = require("./routes/OrderRoute");
 const cartRoute = require("./routes/CartRoute");
 const userRoute = require("./routes/UserRoute");
 const mongoose = require("mongoose");
-const { addOrder } = require("./controllers/OrderControlleur");
 require("dotenv").config();
 require("./models/Plants");
 require("./models/User");
@@ -22,6 +21,8 @@ const server = http.createServer(app);
 server.listen(5000, () => {
   console.log("app is running on port 5000 !");
 });
+
+app.use('/uploads', express.static('uploads'));
 
 //connect to database
 mongoose
@@ -54,5 +55,4 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 });
-
 module.exports = app;

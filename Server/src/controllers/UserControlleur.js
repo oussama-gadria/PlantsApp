@@ -151,8 +151,7 @@ const login = async (email, password, res) => {
 
 const getUserById = async (req, res) => {
   try {
-    console.log(req.body.userId);
-    const userId = req.body.userId;
+    const userId = req.params.userId;
     const user = await User.findById(userId);
     res.status(200).json(user);
   } catch (error) {
@@ -174,9 +173,19 @@ const sendEmail = (req, res) => {
   }
 };
 
+const getUser=async(req,res)=>{ 
+  try{ 
+  const userList=await User.find();
+  res.status(200).json(userList);
+  }catch(error){ 
+    console.log(error)
+  }
+}
+
 module.exports = {
   confirmEmail,
   getUserById,
+  getUser,
   SignIn,
   addUser,
   sendEmail,

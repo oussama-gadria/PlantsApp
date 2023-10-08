@@ -76,6 +76,9 @@ const Cart = () => {
                 <h3 className="font-semibold text-gray-600 text-xs uppercase w-2/6">
                   Product Details
                 </h3>
+                 <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/6 ">
+                  Size
+                </h3>
                 <h3 className="font-semibold text-center text-gray-600 text-xs uppercase w-1/6 ">
                   Quantity
                 </h3>
@@ -93,9 +96,12 @@ const Cart = () => {
                 <div key={item.plant._id} className="flex items-center hover:bg-gray-100 -mx-8 px-6 py-5">
                   <div className="flex flex-row items-center space-x-8 w-2/6">
                     <div className="w-42">
-                      <img className="h-36 " src={item.plant.Image} alt="" />
+                      <img className="h-36 " src={`http://localhost:5000/uploads/${item.plant.Image}`} alt="" />
                     </div>
                     <span className="font-bold text-sm">{item.plant.Name}</span>
+                  </div>
+                  <div className="flex justify-center w-1/6">
+                    {item.size}
                   </div>
                   <div className="flex justify-center w-1/6">
                     {item.quantity}

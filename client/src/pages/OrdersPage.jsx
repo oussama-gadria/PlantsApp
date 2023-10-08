@@ -45,6 +45,9 @@ const OrdersPage = () => {
                           Plant Name
                         </th>
                         <th scope="col" className="px-6 py-4">
+                          Size
+                        </th>
+                        <th scope="col" className="px-6 py-4">
                           Quantite
                         </th>
                         <th scope="col" className="px-6 py-4">
@@ -56,17 +59,18 @@ const OrdersPage = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {order.Plants.map((plant, index) => (
+                      {order.Plants.map((o, index) => (
                         <tr
                           className="border-b dark:border-neutral-500"
                           key={index}
                         >
                           <td class="whitespace-nowrap px-6 py-4">
-                            {plant.plant.Name}
+                            {o.plant.Name}
                           </td>
-                          <td className="whitespace-nowrap px-6 py-4">{plant.plant.Quantity}</td>
-                          <td className="whitespace-nowrap px-6 py-4">{plant.plant.Price}</td>
-                          <td className="whitespace-nowrap px-6 py-4">{plant.plant.Price*plant.plant.Quantity}</td>
+                          <td className="whitespace-nowrap px-6 py-4">{o.size}</td>
+                          <td className="whitespace-nowrap px-6 py-4">{o.quantity}</td>
+                          <td className="whitespace-nowrap px-6 py-4">{o.plant.Price}</td>
+                          <td className="whitespace-nowrap px-6 py-4">{o.plant.Price*o.quantity}</td>
                         </tr>
                       ))}
                     </tbody>

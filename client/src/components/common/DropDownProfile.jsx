@@ -36,6 +36,15 @@ const DropDownProfile = () => {
           <button
             className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-bold text-bleu hover:bg-neutral-100 active:text-neutral-800 active:no-underline "
             data-te-dropdown-item-ref
+            onClick={()=>{navigate("/updateProfile/")}}
+          >
+            Update Profile
+          </button>
+        </li>
+        <li>
+          <button
+            className="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-bold text-bleu hover:bg-neutral-100 active:text-neutral-800 active:no-underline "
+            data-te-dropdown-item-ref
             onClick={logOut}
           >
             LogOut

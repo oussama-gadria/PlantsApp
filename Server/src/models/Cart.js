@@ -5,8 +5,9 @@ const Schema = mongoose.Schema;
 const CartSchema = new Schema({
   plants: [
     {
-      plant: { type: mongoose.Schema.Types.Object, ref: "Plant" },
+      plant: { type: Schema.Types.Object, ref: "Plant" },
       quantity: Number,
+      size:String
     },
   ],
 });
