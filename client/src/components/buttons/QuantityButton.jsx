@@ -1,9 +1,9 @@
-import { useState } from "react";
 
-const QuantityButton = () => {
-  const [quantity, setQuantity] = useState(1);
+const QuantityButton = ({quantity, setQuantity, quantityMax }) => {
   const addQuantity = () => {
-    setQuantity(quantity + 1);
+    if (quantity < quantityMax) {
+      setQuantity(quantity + 1);
+    }
   };
   const minusQuantity = () => {
     if (quantity > 1) setQuantity(quantity - 1);
@@ -21,7 +21,7 @@ const QuantityButton = () => {
         type="number"
         id="Quantity"
         value={quantity}
-        className="h-10 w-4 border-transparent text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
+        className="h-10 w-4 border-transparent text-center [-moz-appearance:_textfield] text-md [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none"
       />
       <button
         type="button"

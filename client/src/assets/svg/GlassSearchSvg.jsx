@@ -1,7 +1,7 @@
 const GlassSearchSvg = () => {
   return (
     <>
-      <div className="absolute inset-y-0 left-8 flex items-center pointer-events-none">
+      <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
         <svg
           className="w-3 h-3 text-darkGray dark:text-black"
           aria-hidden="true"
