@@ -7,7 +7,7 @@ const DropDownProfile = () => {
 
   const logOut = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("CartId");
+    localStorage.removeItem("cartId");
     navigate("/SignIn");
   };
 

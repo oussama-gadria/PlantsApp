@@ -155,23 +155,6 @@ const Cart = () => {
                   className="p-2 font-semibold text-md w-full border-[3px] rounded-lg border-green "
                 />
               </div>
-              <div className="pb-10">
-                <label
-                  htmlFor="promo"
-                  className="font-semibold inline-block mb-3 text-md uppercase"
-                >
-                  Promo Code
-                </label>
-                <input
-                  type="text"
-                  id="promo"
-                  placeholder="Enter your code"
-                  className="p-2 text-md border-[3px] rounded-lg border-green w-full"
-                />
-              </div>
-              <button className="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase rounded-lg">
-                Apply
-              </button>
               <div className="border-t mt-8 border-green ">
                 <div className="flex font-semibold justify-between py-6 text-md uppercase">
                   <span>Total cost</span>
