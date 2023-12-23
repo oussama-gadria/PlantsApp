@@ -1,5 +1,5 @@
 # Utilise une image de base légère de Node.js
-FROM node:18.19.0-alpine
+FROM node:18
 
 # Définit des variables d'environnement pour une meilleure configuration
 ENV APP_DIR=/app
@@ -20,4 +20,4 @@ COPY . .
 # EXPOSE 5000
 
 # Définit la commande par défaut pour démarrer l'application
-CMD ["npm", "run dev"]
+CMD ["npm", "start"]
